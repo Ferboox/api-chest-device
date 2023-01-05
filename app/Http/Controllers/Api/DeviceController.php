@@ -91,8 +91,6 @@ class DeviceController extends Controller
                 array_push($data, Device::randomLocation($i));
             }
 
-            return $data;
-
             return response()->json([
                 'status' => true,
                 'message' => 'Datos obtenidos correctamente',

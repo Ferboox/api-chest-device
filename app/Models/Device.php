@@ -27,7 +27,8 @@ class Device extends Model
         return [
             'id_device' => $id,
             'x_coordinate' => rand(1, 200),
-            'y_coordinate' => rand(1, 200)
+            'y_coordinate' => rand(1, 200),
+            'velocity' => rand(0, 40)
         ];
     }
 }
