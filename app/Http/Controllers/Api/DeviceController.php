@@ -117,4 +117,97 @@ class DeviceController extends Controller
             ],
         ], 200);
     }
+
+    public function distance(Request $request)
+    {
+        try{
+            //Validated
+            $validateMessage = Validator::make($request->all(), 
+            [
+                'id' => 'required|array',
+                "id.*"  => "required|integer",
+                'start' => "required|date",
+                'end' => "required|date"
+            ]);
+
+            // Return an error if doesn't detect a message at the request.
+            if($validateMessage->fails()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Error en la validación',
+                    'errors' => $validateMessage->errors()
+                ], 401);
+            }   
+
+            $distances = Device::getDistance($request->start, $request->end, $request->id);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Datos obtenidos correctamente',
+                'data' =>  $distances,
+            ], 200);
+
+        }catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+        
+    }
+
+
+    public function field(Request $request)
+    {
+        try{
+            //Validated
+            $validateMessage = Validator::make($request->all(), 
+            [
+                'id' => 'required|array',
+                "position_id"  => "required|integer"
+            ]);
+
+            // Return an error if doesn't detect a message at the request.
+            if($validateMessage->fails()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Error en la validación',
+                    'errors' => $validateMessage->errors()
+                ], 401);
+            }   
+
+            $coordinates = Device::getCoordinates($request->id, $request->position_id);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Datos obtenidos correctamente',
+                'data' =>  $coordinates,
+            ], 200);
+
+        }catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function dimensions(Request $request)
+    {
+        try{
+            $dimensions = Device::getDimensions();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Datos obtenidos correctamente',
+                'data' =>  $dimensions,
+            ], 200);
+
+        }catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
 }

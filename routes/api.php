@@ -29,5 +29,13 @@ Route::group(['prefix' => 'auth'], function(){
         // Get device's battery level.
         Route::get('/battery/{id}', [App\Http\Controllers\Api\DeviceController::class, 'battery']);
 
+        // Get distance by 1 or multiple devices
+        Route::get('/distance', [App\Http\Controllers\Api\DeviceController::class, 'distance']);
+
+        // Get device's coordinates
+        Route::get('/field', [App\Http\Controllers\Api\DeviceController::class, 'field']);
+
+        // Get dimensions
+        Route::get('/dimensions', [App\Http\Controllers\Api\DeviceController::class, 'dimensions']);
     }
 );
