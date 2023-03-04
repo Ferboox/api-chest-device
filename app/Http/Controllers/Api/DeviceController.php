@@ -163,8 +163,8 @@ class DeviceController extends Controller
             //Validated
             $validateMessage = Validator::make($request->all(), 
             [
-                'id' => 'required|array',
-                "position_id"  => "required|integer"
+                'id' => 'required|integer',
+                "id_position"  => "required|integer"
             ]);
 
             // Return an error if doesn't detect a message at the request.
@@ -176,7 +176,7 @@ class DeviceController extends Controller
                 ], 401);
             }   
 
-            $coordinates = Device::getCoordinates($request->id, $request->position_id);
+            $coordinates = Device::getCoordinates($request->id, $request->id_position);
 
             return response()->json([
                 'status' => true,

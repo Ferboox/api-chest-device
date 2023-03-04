@@ -55,7 +55,7 @@ class Device extends Model
     {
         return [
             'id_device' => $id,
-            'position_id' => $position_id,
+            'id_position' => $position_id,
             'x_coordinate' => rand(1, 200),
             'y_coordinate' => rand(1, 200)
         ];
