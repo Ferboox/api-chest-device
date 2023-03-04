@@ -15,7 +15,7 @@ class CreateTimes extends Migration
     {
         Schema::create('times', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('seconds')->unique();
+            $table->float('seconds', 8, 2)->unique();
             $table->timestamps();
         });
     }

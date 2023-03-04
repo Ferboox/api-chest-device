@@ -15,8 +15,8 @@ class CreateBatteries extends Migration
     {
         Schema::create('batteries', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_dispositivo');
-            $table->integer('percentage');
+            $table->bigInteger('id_device');
+            $table->float('percentage', 8, 2);
             $table->timestamps();
         });
     }

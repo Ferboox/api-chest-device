@@ -37,5 +37,26 @@ Route::group(['prefix' => 'auth'], function(){
 
         // Get dimensions
         Route::get('/dimensions', [App\Http\Controllers\Api\DeviceController::class, 'dimensions']);
+
+
+        // Time
+        // Set time
+        Route::post('/time', [App\Http\Controllers\Api\TimeController::class, 'store']);
+
+        // Match
+        // Set match's dates
+        Route::post('/match', [App\Http\Controllers\Api\MatchController::class, 'store']);
+
+        // Field
+        // Set field
+        Route::post('/field', [App\Http\Controllers\Api\FieldController::class, 'store']);
+
+        // Battery
+        // Set battery
+        Route::post('/battery', [App\Http\Controllers\Api\BatteryController::class, 'store']);
+
+        // Coordinate
+        // Set device's coordinate
+        Route::post('/coordinate', [App\Http\Controllers\Api\CoordinateController::class, 'store']);
     }
 );
